@@ -10,6 +10,9 @@
     - home.
     - about.
 
+- nested routing, create 1 nested routing.
+    - news
+
 ## Lets start
 create 2 page using folder structure like this
     ```src/about/page.tsx```
@@ -41,6 +44,36 @@ export default function HomePage() {
   }
 ```
 
+for nested  routing.
+create 2 files on 
+    ```src/news/page.tsx```
+    ```src/news/trend/page.tsx```
+
+nothing fancy again in this source.
+
+```src/news/page.tsx```
+```ts
+export default function newsPage() {
+    return (
+      <div>
+        <h1>News</h1>
+        <p>This is the news page.</p>
+      </div>
+    );
+  }
+```
+
+```src/news/trend/page.tsx```
+```ts
+export default function NewsTrendPage() {
+    return (
+      <div>
+        <h1>Trending News</h1>
+        <p>This is the Trending News page.</p>
+      </div>
+    );
+  }
+```
 
 run the development server:
 
