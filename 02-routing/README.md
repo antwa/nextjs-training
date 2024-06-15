@@ -135,3 +135,34 @@ navigate to
 2. ```/about```
 3. ```/product```
 4. ```/product/any-slug```
+
+
+
+## side note for other route feature
+if u want to catch all segment ,let say ```/docs/seqment1/segment2 ``` , u can change folder name to ```/docs/[...slug]```. yup with 3 dot ```[...slug]```.
+here is example in code
+
+```ts
+
+'use client'; // this for client side rendering
+import { useParams } from "next/navigation";
+
+export default function DocsPage() {
+    const params = useParams<{ slug: string[]}>()
+    if(params.slug?.length===2) // lets say we want to catch 2 segemen from /docs
+    {
+        return <h1> segment {params.slug[0]} and segment {params.slug[1]} </h2> 
+    }else if{params.slug?.length==1}
+    {
+        return <h1> segment {params.slug[0]} </h2> 
+    }else{
+        return (
+            <div>
+                <h1>Docs Page</h1>
+            </div>
+        );
+    }
+    
+}
+
+```
