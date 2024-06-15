@@ -3,7 +3,6 @@
 - every folder corresponds to a path in browser url
 - lowercase filename
 - every file that corresponds to a route must be name page.tsx
-## Getting Started
 
 ## Target
 - create 2 simple page file based routing.
@@ -11,10 +10,13 @@
     - about.
 
 - nested routing, create 1 nested routing.
-    - news
+    - news/trend
+
+- dynamic routing, create dynamic routing.
+    - product/[title]
 
 ## Lets start
-create 2 page using folder structure like this
+### create 2 page using folder structure like this
     ```src/about/page.tsx```
     ```src/home/page.tsx```
 
@@ -44,7 +46,7 @@ export default function HomePage() {
   }
 ```
 
-for nested  routing.
+### Nested  routing.
 create 2 files on 
     ```src/news/page.tsx```
     ```src/news/trend/page.tsx```
@@ -74,7 +76,48 @@ export default function NewsTrendPage() {
     );
   }
 ```
+### Dynamic route
+create 2 files on 
+    ```src/product/page.tsx```
+    ```src/product/[title]/page.tsx```
+yes. ```[title]``` is folder, and again nothing fancy in this source.
 
+```src/product/page.tsx```
+```ts
+export default function ProductPage() {
+  return (
+    <div>
+      <h1>Product Page</h1>
+      <ul>
+        {
+            //iterate 1- 10  for dummy product
+            Array.from({ length: 10 }, (_, i) => i + 1).map((i) => (
+                <li key={i}>Product {i}</li>
+            ))
+        }
+      </ul>
+    </div>
+  );
+}
+
+```
+
+```src/product/[title]/page.tsx```
+```ts
+'use client'; // this for client side rendering
+import { useParams } from "next/navigation";
+
+export default function ProductDetailPage() {
+    // Get the title from the URL , useParam is a hook from next/navigation to get parameters from the URL
+    const params = useParams<{ slug: string}>()
+    return (
+        <div>
+            <h1>Product Detail Page</h1>
+            <p>Product Title: <b>{params.slug}</b></p>
+        </div>
+    );
+}
+```
 run the development server:
 
 ```bash
@@ -90,3 +133,5 @@ bun dev
 navigate to 
 1. ```/home```
 2. ```/about```
+3. ```/product```
+4. ```/product/any-slug```
